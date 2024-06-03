@@ -1,4 +1,4 @@
-const Bill = require("../models/bill.js");
+const Bill = require("../models/Bill.js");
 const express = require("express");
 const router = express.Router();
 
