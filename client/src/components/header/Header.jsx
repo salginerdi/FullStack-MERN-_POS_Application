@@ -11,11 +11,11 @@ import {
 } from "@ant-design/icons";
 import { Input, Badge, message } from "antd";
 import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import "./index.css";
 
-const Header: React.FC = ({ setSearch }) => {
-  const cart = useSelector((state: RootState) => state.cart);
+
+const Header = ({ setSearch }) => {
+  const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const logOut = () => {
@@ -90,7 +90,7 @@ const Header: React.FC = ({ setSearch }) => {
           <span className="md:text-xs text-[10px]">İstatistikler</span>
         </Link>
         <div onClick={logOut}>
-          <Link className={`menu-link`}>
+          <Link to="/register" className={`menu-link`}>
             <LogoutOutlined className="md:text-2xl text-xl" />
             <span className="md:text-xs text-[10px]">Çıkış</span>
           </Link>

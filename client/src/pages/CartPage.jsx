@@ -3,25 +3,23 @@ import { Button, Card, Input, Popconfirm, Space, Table, message } from "antd";
 import Header from "../components/header/Header";
 import CreateBill from "../components/cart/CreateBill";
 import { useDispatch, useSelector } from "react-redux";
-import { MinusCircleOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+  MinusCircleOutlined,
+  PlusCircleOutlined,
+  SearchOutlined,
+} from "@ant-design/icons";
 import { increase, decrease, deleteCart } from "../redux/cartSlice";
-import type { RootState } from "../redux/store";
+
 import Highlighter from "react-highlight-words";
 
-type CartItem = {
-  _id: string;
-  title: string;
-  img: string;
-  price: number;
-  quantity: number;
-};
 
-const CartPage: React.FC = () => {
+
+const CartPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
-  const cart = useSelector((state: RootState) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -144,7 +142,7 @@ const CartPage: React.FC = () => {
       dataIndex: "img",
       key: "img",
       width: "125px",
-      render: (text: string | undefined) => {
+      render: (text) => {
         return <img src={text} alt="" className="w-full h-20 object-cover" />;
       },
     },
@@ -152,28 +150,28 @@ const CartPage: React.FC = () => {
       title: "Ürün Adı",
       dataIndex: "title",
       key: "title",
-      ...getColumnSearchProps("title")
+      ...getColumnSearchProps("title"),
     },
     {
       title: "Kategori",
       dataIndex: "category",
       key: "category",
-      ...getColumnSearchProps("category")
+      ...getColumnSearchProps("category"),
     },
     {
       title: "Ürün Fiyatı",
       dataIndex: "price",
       key: "price",
-      render: (text: number) => {
+      render: (text) => {
         return <span>{text.toFixed(2)}₺</span>;
       },
-      sorter: (a,b) => a.price - b.price,
+      sorter: (a, b) => a.price - b.price,
     },
     {
       title: "Ürün Adeti",
       dataIndex: "quantity",
       key: "quantity",
-      render: (_: unknown, record: CartItem) => {
+      render: (_, record) => {
         return (
           <div className="flex items-center">
             <Button
@@ -210,13 +208,13 @@ const CartPage: React.FC = () => {
     },
     {
       title: "Toplam Fiyat",
-      render: (_: unknown, record: CartItem) => {
+      render: (_, record) => {
         return <span>{(record.quantity * record.price).toFixed(2)}₺</span>;
       },
     },
     {
       title: "İşlem",
-      render: (_: unknown, record: CartItem) => {
+      render: (_, record) => {
         return (
           <Popconfirm
             title="Silmek istediğinize emin misiniz?"

@@ -1,25 +1,11 @@
 import { Button, Form, Input, message, Modal, Select, Table } from "antd";
 import React, { useEffect, useState } from "react";
 
-type Product = {
-  _id: number;
-  title: string;
-  img: string;
-  price: number;
-  category: string;
-};
-
-type Category = {
-  _id: number;
-  title: string;
-  value: string;
-};
-
-const Edit: React.FC = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+const Edit = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState<Partial<Product>>({});
+  const [editingItem, setEditingItem] = useState({});
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -46,9 +32,7 @@ const Edit: React.FC = () => {
         );
         const data = await res.json();
         data &&
-          setCategories(
-            data.map((item: Category) => ({ ...item, value: item.title }))
-          );
+          setCategories(data.map((item) => ({ ...item, value: item.title })));
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +41,7 @@ const Edit: React.FC = () => {
     getCategories();
   }, []);
 
-  const onFinish = async (values: Product) => {
+  const onFinish = async (values) => {
     try {
       await fetch(
         import.meta.env.VITE_APP_SERVER_URL + "/api/products/update-product",
@@ -81,7 +65,7 @@ const Edit: React.FC = () => {
     }
   };
 
-  const deleteProduct = async (id: number) => {
+  const deleteProduct = async (id) => {
     if (window.confirm("Silmek istediğinize emin misiniz?")) {
       try {
         await fetch(
@@ -106,13 +90,13 @@ const Edit: React.FC = () => {
       title: "Ürün Adı",
       dataIndex: "title",
       width: "8%",
-      render: (_: unknown, record: Product) => <p>{record.title}</p>,
+      render: (_, record) => <p>{record.title}</p>,
     },
     {
       title: "Ürün Görseli",
       dataIndex: "img",
       width: "4%",
-      render: (_: unknown, record: Product) => (
+      render: (_, record) => (
         <img src={record.img} alt="" className="w-full h-20 object-cover" />
       ),
     },
@@ -130,7 +114,7 @@ const Edit: React.FC = () => {
       title: "İşlemler",
       dataIndex: "action",
       width: "8%",
-      render: (_: unknown, record: Product) => (
+      render: (_, record) => (
         <div>
           <Button
             type="link"

@@ -1,12 +1,6 @@
 import React from "react";
 
-type AuthCarouselProps = {
-  img: string;
-  title: string;
-  desc: string;
-};
-
-const AuthCarousel: React.FC<AuthCarouselProps> = ({ img, title, desc }) => {
+const AuthCarousel = ({ img, title, desc }) => {
   return (
     <div className="!flex flex-col items-center justify-center h-full mb-10">
       <img src={img} alt={title} className="w-[600px] h-[500px]" />

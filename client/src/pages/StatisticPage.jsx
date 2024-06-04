@@ -4,37 +4,10 @@ import StatisticCard from "../components/statistics/StatisticCard";
 import { Area, Pie } from "@ant-design/plots";
 import { Spin } from "antd";
 
-type CartItem = {
-  _id: string;
-  title: string;
-  img: string;
-  price: number;
-  quantity: number;
-};
 
-type BillItem = {
-  length: string | number;
-  _id: string;
-  customerName: string;
-  customerPhoneNumber: string;
-  createdAt: string;
-  paymentMode: string;
-  totalAmount: number;
-  cartItems: CartItem[];
-  subTotal: number;
-  tax: number;
-};
-
-type Product = {
-  title: string;
-  img: string;
-  price: number;
-  category: string;
-};
-
-const StatisticPage: React.FC = () => {
-  const [data, setData] = useState<BillItem>();
-  const [products, setProducts] = useState<Product[]>([]);
+const StatisticPage = () => {
+  const [data, setData] = useState();
+  const [products, setProducts] = useState([]);
   const user = JSON.parse(localStorage.getItem("posUser"));
 
   useEffect(() => {
@@ -47,7 +20,7 @@ const StatisticPage: React.FC = () => {
         const res = await fetch(
           import.meta.env.VITE_APP_SERVER_URL + "/api/products/get-all"
         );
-        const data: Product[] = await res.json();
+        const data = await res.json();
         setProducts(data);
       } catch (error) {
         console.log(error);
@@ -60,7 +33,7 @@ const StatisticPage: React.FC = () => {
   const asyncFetch = () => {
     fetch(import.meta.env.VITE_APP_SERVER_URL + "/api/bills/get-all")
       .then((response) => response.json())
-      .then((json: BillItem[]) => setData(json))
+      .then((json) => setData(json))
       .catch((error) => {
         console.log("fetch data failed", error);
       });
@@ -112,7 +85,7 @@ const StatisticPage: React.FC = () => {
     },
   };
 
-  const totalAmount = (): string | number => {
+  const totalAmount = () => {
     const amount = data.reduce((total, item) => item.totalAmount + total, 0);
     return `${amount.toFixed(2)}₺`;
   };

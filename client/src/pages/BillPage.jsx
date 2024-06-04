@@ -5,30 +5,11 @@ import PrintBill from "../components/bills/PrintBill";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
-type BillItem = {
-  _id: string;
-  customerName: string;
-  customerPhoneNumber: string;
-  createdAt: string;
-  paymentMode: string;
-  totalAmount: number;
-  cartItems: CartItem[];
-  subTotal: number;
-  tax: number;
-};
 
-type CartItem = {
-  _id: string;
-  title: string;
-  img: string;
-  price: number;
-  quantity: number;
-};
-
-const BillPage: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [billItems, setBillItems] = useState<BillItem>();
-  const [customer, setCustomer] = useState<BillItem | undefined>();
+const BillPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [billItems, setBillItems] = useState();
+  const [customer, setCustomer] = useState();
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -179,7 +160,7 @@ const BillPage: React.FC = () => {
       title: "Oluşturma Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text: string) => {
+      render: (text) => {
         return <span>{text.substring(0, 10)}</span>;
       },
     },
@@ -193,7 +174,7 @@ const BillPage: React.FC = () => {
       title: "Toplam Fiyat",
       dataIndex: "totalAmount",
       key: "totalAmount",
-      render: (text: number) => {
+      render: (text) => {
         return <span>{text}₺</span>;
       },
       sorter: (a, b) => a.totalAmount - b.totalAmount,
@@ -202,7 +183,7 @@ const BillPage: React.FC = () => {
       title: "İşlem",
       dataIndex: "action",
       key: "action",
-      render: (_: unknown, record: BillItem) => {
+      render: (_, record) => {
         return (
           <Button
             type="link"

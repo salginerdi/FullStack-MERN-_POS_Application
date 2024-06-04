@@ -3,23 +3,13 @@ import { addProduct } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
 import { message } from "antd";
 
-type Product = {
-  _id: number | string;
-  title: string;
-  img: string;
-  price: number;
-};
 
-type ProductItemProps = {
-  item: Product;
-};
-
-const ProductItem: React.FC<ProductItemProps> = ({ item }) => {
+const ProductItem = ({ item }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(addProduct({ ...item, quantity: 1 }));
-    message.success("Ürün sepete eklendi.")
+    message.success("Ürün sepete eklendi.");
   };
 
   return (

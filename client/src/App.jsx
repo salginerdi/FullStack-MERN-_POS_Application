@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import CartPage from "./pages/CartPage";
@@ -10,7 +10,7 @@ import Login from "./pages/auth/Login";
 import ProductPage from "./pages/ProductPage";
 import { useSelector } from "react-redux";
 
-const App: React.FC = () => {
+const App = () => {
   const cart = useSelector((state) => state.cart);
 
   useEffect(()=>{
@@ -77,11 +77,9 @@ const App: React.FC = () => {
 
 export default App;
 
-interface RouteControlProps {
-  children: ReactNode;
-}
 
-export const RouteControl: React.FC<RouteControlProps> = ({ children }) => {
+
+export const RouteControl = ({ children }) => {
   if (localStorage.getItem("posUser")) {
     return children;
   } else {

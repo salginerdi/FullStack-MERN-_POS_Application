@@ -1,27 +1,17 @@
 import { Button, Form, Input, message, Modal, Table } from "antd";
 import React, { useState } from "react";
 
-type Category = {
-  _id: string;
-  title: string;
-};
 
-type EditProps = {
-  isEditModalOpen: boolean;
-  setIsEditModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  categories: Category[];
-  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
-};
 
-const Edit: React.FC<EditProps> = ({
+const Edit = ({
   isEditModalOpen,
   setIsEditModalOpen,
   categories,
   setCategories,
 }) => {
-  const [editingRow, setEditingRow] = useState<Category | object>({});
+  const [editingRow, setEditingRow] = useState({});
 
-  const onFinish = (values: { title: string }) => {
+  const onFinish = (values) => {
     try {
       fetch(
         import.meta.env.VITE_APP_SERVER_URL + "/api/categories/update-category",
@@ -29,7 +19,7 @@ const Edit: React.FC<EditProps> = ({
           method: "PUT",
           body: JSON.stringify({
             ...values,
-            categoryId: (editingRow as Category)._id,
+            categoryId: editingRow._id,
           }),
           headers: { "Content-type": "application/json; charset=UTF-8" },
         }
@@ -37,7 +27,7 @@ const Edit: React.FC<EditProps> = ({
       message.success("Kategori başarıyla güncellendi.");
       setCategories(
         categories.map((item) => {
-          if (item._id === (editingRow as Category)._id) {
+          if (item._id === editingRow._id) {
             return { ...item, title: values.title };
           }
           return item;
@@ -49,7 +39,7 @@ const Edit: React.FC<EditProps> = ({
     }
   };
 
-  const deleteCategory = (id: string) => {
+  const deleteCategory = (id) => {
     if (window.confirm("Silmek istediğinize emin misiniz?")) {
       try {
         fetch(
@@ -74,8 +64,8 @@ const Edit: React.FC<EditProps> = ({
     {
       title: "Kategori Başlığı",
       dataIndex: "title",
-      render: (_: unknown, record: Category) => {
-        if (record._id === (editingRow as Category)._id) {
+      render: (_, record) => {
+        if (record._id === editingRow._id) {
           return (
             <Form.Item className="mb-0" name="title">
               <Input defaultValue={record.title} />
@@ -89,7 +79,7 @@ const Edit: React.FC<EditProps> = ({
     {
       title: "İşlemler",
       dataIndex: "action",
-      render: (_: unknown, record: Category) => {
+      render: (_, record) => {
         return (
           <div>
             <Button

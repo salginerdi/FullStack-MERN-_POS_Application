@@ -1,23 +1,7 @@
 import { Button, Form, Input, Modal, message } from "antd";
 import React from "react";
 
-type Category = {
-  _id: string;
-  title: string;
-};
-
-type CategoryValues = {
-  title: string;
-};
-
-type AddProps = {
-  isAddModalOpen: boolean;
-  setIsAddModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  categories: Category[];
-  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
-};
-
-const Add: React.FC<AddProps> = ({
+const Add = ({
   isAddModalOpen,
   setIsAddModalOpen,
   categories,
@@ -25,7 +9,7 @@ const Add: React.FC<AddProps> = ({
 }) => {
   const [form] = Form.useForm();
 
-  const onFinish = async (values: CategoryValues) => {
+  const onFinish = async (values) => {
     try {
       await fetch(
         import.meta.env.VITE_APP_SERVER_URL + "/api/categories/add-category",

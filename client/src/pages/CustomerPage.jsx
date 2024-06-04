@@ -4,15 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 
-type BillItemType = {
-  key: string;
-  customerName: string;
-  customerPhoneNumber: string;
-  createdAt: string;
-};
 
-const CustomerPage: React.FC = () => {
-  const [billItems, setBillItems] = useState<BillItemType>();
+
+
+const CustomerPage = () => {
+  const [billItems, setBillItems] = useState();
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -31,7 +27,7 @@ const CustomerPage: React.FC = () => {
     getBills();
   }, []);
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys, confirm , dataIndex) => {
     confirm();
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
@@ -162,7 +158,7 @@ const CustomerPage: React.FC = () => {
       title: "İşlem Tarihi",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (text: string) => {
+      render: (text) => {
         return <span>{text.substring(0, 10)}</span>;
       },
     },

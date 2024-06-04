@@ -4,31 +4,22 @@ import Add from "./Add";
 import Edit from "./Edit";
 import "./style.css";
 
-type Category = {
-  _id: string;
-  title: string;
-};
 
-type CategoriesProps = {
-  categories: Category[];
-  setCategories: React.Dispatch<React.SetStateAction<Category[]>>;
-};
-
-const Categories: React.FC<CategoriesProps> = ({
+const Categories = ({
   categories,
   setCategories,
   setFiltered,
   products
 }) => {
-  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [categoryTitle, setCategoryTitle] = useState("Tümü")
 
   useEffect(() => {
     if(categoryTitle === "Tümü"){
       setFiltered(products)
     }else{
-      setFiltered(products.filter((item: { category: string; })=>item.category === categoryTitle))
+      setFiltered(products.filter((item)=>item.category === categoryTitle))
     }
   },[products, setFiltered, categoryTitle])
 

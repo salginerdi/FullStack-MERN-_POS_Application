@@ -1,13 +1,13 @@
 import { Button, Carousel, Checkbox, Form, Input, message } from "antd";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 
-const Login: React.FC = () => {
+const Login = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: unknown) => {
+  const onFinish = async (values) => {
     setLoading(true);
     try {
       const res = await fetch(

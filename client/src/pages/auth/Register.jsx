@@ -4,18 +4,13 @@ import { Link } from "react-router-dom";
 import AuthCarousel from "../../components/auth/AuthCarousel";
 import { useNavigate } from "react-router-dom";
 
-type RegisterFormValues = {
-  username: string;
-  email: string;
-  password: string;
-  passwordAgain: string;
-};
 
-const Register: React.FC = () => {
+
+const Register = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
-  const onFinish = async (values: RegisterFormValues) => {
+  const onFinish = async (values) => {
     setLoading(true);
     try {
       const res = await fetch(

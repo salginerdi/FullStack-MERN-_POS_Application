@@ -7,11 +7,11 @@ import {
 import { Button, message } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { decrease, deleteCart, increase, reset } from "../../redux/cartSlice";
-import { RootState } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 
-const CartTotals: React.FC = () => {
-  const cart = useSelector((state: RootState) => state.cart);
+
+const CartTotals = () => {
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

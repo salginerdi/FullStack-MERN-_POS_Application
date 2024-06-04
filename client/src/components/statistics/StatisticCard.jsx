@@ -1,12 +1,6 @@
 import React from "react";
 
-type StatisticCardProps = {
-  title: string;
-  amount: string | number;
-  img: string;
-};
-
-const StatisticCard: React.FC<StatisticCardProps> = ({
+const StatisticCard = ({
   title,
   amount,
   img,

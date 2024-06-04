@@ -1,44 +1,20 @@
 import { Button, Card, Form, Input, Modal, Select, message } from "antd";
 import React from "react";
-import { FormProps } from "antd/lib/form";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../redux/store";
 import { reset } from "../../redux/cartSlice";
 import { useNavigate } from "react-router-dom";
 
-type CartItem = {
-  _id: string;
-  title: string;
-  img: string;
-  price: number;
-  quantity: number;
-};
 
-type FieldType = {
-  customerName: string;
-  phoneNumber: string;
-  paymentMode: string;
-  cardItems: CartItem[];
-  subTotal: number;
-  tax: number;
-  totalAmount: number;
-};
-
-type CreateBillProps = {
-  isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const CreateBill: React.FC<CreateBillProps> = ({
+const CreateBill = ({
   isModalOpen,
   setIsModalOpen,
 }) => {
-  const cart = useSelector((state: RootState) => state.cart);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onFinish: FormProps<FieldType>["onFinish"] = async (
-    values: FieldType
+  const onFinish = async (
+    values
   ) => {
     try {
       const res = await fetch(

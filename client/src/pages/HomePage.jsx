@@ -5,22 +5,11 @@ import Products from "../components/products/Products";
 import CartTotals from "../components/cart/CartTotals";
 import { Spin } from "antd";
 
-type Category = {
-  _id: string;
-  title: string;
-};
 
-type Product = {
-  _id: number | string;
-  title: string;
-  img: string;
-  price: number;
-  category: string;
-};
 
-const HomePage: React.FC = () => {
-  const [products, setProducts] = useState<Product>();
-  const [categories, setCategories] = useState<Category>();
+const HomePage = () => {
+  const [products, setProducts] = useState();
+  const [categories, setCategories] = useState();
   const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState("");
 

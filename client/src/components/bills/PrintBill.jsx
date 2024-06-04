@@ -3,38 +3,12 @@ import { useReactToPrint } from "react-to-print";
 import React from "react";
 import { useRef } from "react";
 
-type CartItem = {
-  _id: string;
-  title: string;
-  img: string;
-  price: number;
-  quantity: number;
-};
-
-type BillItem = {
-  _id: string;
-  customerName: string;
-  customerPhoneNumber: string;
-  createdAt: string;
-  paymentMode: string;
-  totalAmount: number;
-  cardItems: CartItem[];
-  subTotal: number;
-  tax: number;
-};
-
-type PrintBillProps = {
-  isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  customer?: BillItem;
-};
-
-const PrintBill: React.FC<PrintBillProps> = ({
+const PrintBill = ({
   isModalOpen,
   setIsModalOpen,
   customer,
 }) => {
-  const componentRef = useRef<HTMLDivElement>(null);
+  const componentRef = useRef(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });

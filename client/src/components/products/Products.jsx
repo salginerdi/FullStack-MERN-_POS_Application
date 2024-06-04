@@ -4,16 +4,8 @@ import { PlusOutlined, EditOutlined } from "@ant-design/icons";
 import Add from "./Add";
 import { useNavigate } from "react-router-dom";
 
-type Category = {
-  value: string;
-  title: string;
-};
 
-type ProductsProps = {
-  categories: Category[];
-};
-
-const Products: React.FC<ProductsProps> = ({
+const Products = ({
   categories,
   filtered,
   products,

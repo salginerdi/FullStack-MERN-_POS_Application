@@ -1,23 +1,7 @@
 import { Button, Form, Input, message, Modal, Select } from "antd";
 import React from "react";
 
-type AddProps = {
-  isAddModalOpen: boolean;
-  setIsAddModalOpen: (isOpen: boolean) => void;
-  categories: Array<{ value: string; title: string }>;
-  products: Array<Product>;
-  setProducts: (products: Array<Product>) => void;
-};
-
-type Product = {
-  _id: number | string;
-  title: string;
-  img: string;
-  price: number;
-  category: string;
-};
-
-const Add: React.FC<AddProps> = ({
+const Add = ({
   isAddModalOpen,
   setIsAddModalOpen,
   categories,
@@ -26,7 +10,7 @@ const Add: React.FC<AddProps> = ({
 }) => {
   const [form] = Form.useForm();
 
-  const onFinish = async (values: Product) => {
+  const onFinish = async (values) => {
     try {
       await fetch(
         import.meta.env.VITE_APP_SERVER_URL + "/api/products/add-product",
