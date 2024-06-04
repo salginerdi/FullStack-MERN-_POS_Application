@@ -2,6 +2,8 @@
 
 Bu proje, bir kategori oluşturma, ürün ekleme, düzenleme ve çıkarma, müşteri ekleme, fatura oluşturma ve yazdırma işlevselliğine sahip bir uygulamadır. Ayrıca, satılan ürünlerin ve müşterilerin istatistiklerinin tutulduğu bir sayfa da mevcuttur. Proje full responsive olup tüm cihazlarla uyumludur.
 
+[İncelemek İçin tıklayın...](https://pos-application-erdi.netlify.app/)
+
 ## Kullanılan Teknolojiler
 
 - **Frontend:**
@@ -99,6 +101,8 @@ Bu proje, bir kategori oluşturma, ürün ekleme, düzenleme ve çıkarma, müş
 # Full Stack(MERN) POS Application
 
 This project is an application with functionalities to create categories, add, edit, and remove products, add customers, create and print invoices. Additionally, there is a page that tracks statistics of sold products and customers. The project is fully responsive and compatible with all devices.
+
+[Click to Preview...](https://pos-application-erdi.netlify.app/)
 
 ## Technologies Used
 
