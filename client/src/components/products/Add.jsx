@@ -10,23 +10,24 @@ const Add = ({
 }) => {
   const [form] = Form.useForm();
 
-  const onFinish = async (values) => {
+  const onFinish = (values) => {
     try {
-      await fetch(
-        import.meta.env.VITE_APP_SERVER_URL + "/api/products/add-product",
-        {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        }
-      );
+      fetch(process.env.REACT_APP_SERVER_URL + "/api/products/add-product", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      });
       message.success("Ürün başarıyla eklendi.");
       form.resetFields();
       setProducts([
         ...products,
-        { ...values, _id: Math.random(), price: Number(values.price) },
+        {
+          ...values,
+          _id: Math.random(),
+          price: Number(values.price),
+        },
       ]);
-      setIsAddModalOpen(false);
+      setIsAddModalOpen(false)
     } catch (error) {
       console.log(error);
     }
@@ -43,7 +44,7 @@ const Add = ({
         <Form.Item
           name="title"
           label="Ürün Adı"
-          rules={[{ required: true, message: "Ürün Adı Alanı Boş Geçilemez!" }]}
+          rules={[{ required: true, message: "Ürün Adı Alanı Boş Bırakılamaz!" }]}
         >
           <Input placeholder="Ürün adı giriniz." />
         </Form.Item>
@@ -51,7 +52,7 @@ const Add = ({
           name="img"
           label="Ürün Görseli"
           rules={[
-            { required: true, message: "Ürün Görseli Alanı Boş Geçilemez!" },
+            { required: true, message: "Ürün Görseli Alanı Boş Bırakılamaz!" },
           ]}
         >
           <Input placeholder="Ürün görseli giriniz." />
@@ -60,7 +61,7 @@ const Add = ({
           name="price"
           label="Ürün Fiyatı"
           rules={[
-            { required: true, message: "Ürün Fiyatı Alanı Boş Geçilemez!" },
+            { required: true, message: "Ürün Fiyatı Alanı Boş Bırakılamaz!" },
           ]}
         >
           <Input placeholder="Ürün fiyatı giriniz." />
@@ -68,11 +69,11 @@ const Add = ({
         <Form.Item
           name="category"
           label="Kategori Seç"
-          rules={[{ required: true, message: "Kategori Alanı Boş Geçilemez!" }]}
+          rules={[{ required: true, message: "Kategori Alanı Boş Bırakılamaz!" }]}
         >
           <Select
             showSearch
-            placeholder="Bir kategori seçiniz."
+            placeholder="Search to Select"
             optionFilterProp="children"
             filterOption={(input, option) =>
               (option?.title ?? "").includes(input)

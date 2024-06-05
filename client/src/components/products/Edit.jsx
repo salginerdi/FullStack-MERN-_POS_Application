@@ -59,6 +59,8 @@ const Edit = () => {
             : item
         )
       );
+      setIsEditModalOpen(false); 
+    form.resetFields();
     } catch (error) {
       message.error("Bir şeyler yanlış gitti.");
       console.log(error);
@@ -122,6 +124,7 @@ const Edit = () => {
             onClick={() => {
               setIsEditModalOpen(true);
               setEditingItem(record);
+              form.setFieldsValue(record)
             }}
           >
             Düzenle
@@ -146,7 +149,10 @@ const Edit = () => {
       <Modal
         title="Yeni Ürün Ekle"
         open={isEditModalOpen}
-        onCancel={() => setIsEditModalOpen(false)}
+        onCancel={() => {
+          setIsEditModalOpen(false);
+          form.resetFields();
+        }}
         footer={false}
       >
         <Form
