@@ -9,7 +9,7 @@ const cartSlice = createSlice({
     total: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart")).total
       : 0,
-    tax: 8,
+    tax: 20,
   },
   reducers: {
     addProduct: (state, action) => {
