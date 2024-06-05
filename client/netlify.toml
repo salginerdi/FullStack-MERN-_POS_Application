@@ -1,3 +1,3 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm vite build"
-  publish = "client/dist"
+  command = "npm install --legacy-peer-deps && vite build"
+  publish = "./client/dist"
