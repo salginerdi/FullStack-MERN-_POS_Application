@@ -10,9 +10,9 @@ const Add = ({
 }) => {
   const [form] = Form.useForm();
 
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     try {
-      fetch(process.env.REACT_APP_SERVER_URL + "/api/products/add-product", {
+      await fetch(import.meta.env.VITE_APP_SERVER_URL + "/api/products/add-product", {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "Content-type": "application/json; charset=UTF-8" },
