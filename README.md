@@ -2,7 +2,7 @@
 
 Bu proje, bir kategori oluşturma, ürün ekleme, düzenleme ve çıkarma, müşteri ekleme, fatura oluşturma ve yazdırma işlevselliğine sahip bir uygulamadır. Ayrıca, satılan ürünlerin ve müşterilerin istatistiklerinin tutulduğu bir sayfa da mevcuttur. Proje full responsive olup tüm cihazlarla uyumludur.
 
-[İncelemek İçin tıklayın...](https://pos-application-erdi.netlify.app/)
+[İncelemek İçin tıklayın...](https://posapperdi.vercel.app/)
 
 ## Kullanılan Teknolojiler
 
@@ -71,12 +71,12 @@ Bu proje, bir kategori oluşturma, ürün ekleme, düzenleme ve çıkarma, müş
 5. **Sunucuyu ve istemciyi başlatın:**
     ```sh
     # Sunucu için
-    cd server
-    npm start
+    cd api
+    node start
 
     # İstemci için
     cd ../client
-    npm start
+    npm run dev
     ```
 
 ## Kullanım
@@ -102,7 +102,7 @@ Bu proje, bir kategori oluşturma, ürün ekleme, düzenleme ve çıkarma, müş
 
 This project is an application with functionalities to create categories, add, edit, and remove products, add customers, create and print invoices. Additionally, there is a page that tracks statistics of sold products and customers. The project is fully responsive and compatible with all devices.
 
-[Click to Preview...](https://pos-application-erdi.netlify.app/)
+[Click to Preview...](https://posapperdi.vercel.app/)
 
 ## Technologies Used
 
