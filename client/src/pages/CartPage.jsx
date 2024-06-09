@@ -9,7 +9,6 @@ import {
   SearchOutlined,
 } from "@ant-design/icons";
 import { increase, decrease, deleteCart } from "../redux/cartSlice";
-
 import Highlighter from "react-highlight-words";
 
 
